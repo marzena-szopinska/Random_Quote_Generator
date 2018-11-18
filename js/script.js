@@ -3,53 +3,80 @@ Treehouse Techdegree:
 FSJS project 1 - A Random Quote Generator
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
+var quotes = [
+  {
+    quote: "Don\'t watch the clock, do what it does. Keep going.",
+    source: "Sam Levenson",
+    year: "2004",
+    citation: "brainyquote"
+  },
+  {
+    quote: "Nobody is born a warrior, in exactly the same way that nobody is born an average man. We make ourselves into one or the other.",
+    source: "Carlos Castaneda"
+  },
+  {
+    quote: "Never mind searching for who you are. Search for the person you aspire to be.",
+    source: "Robert Brault",
+    year: "2015",
+    citation: "thoughtcatalog"
+  },
+  {
+    quote: "Many of life\’s failures are people who did not realize how close they were to success when they gave up.",
+    source: "Thomas Edison",
+    citation: "thoughtcatalog"
+  },
+  {
+    quote: "Once you realize there is a life after mistakes, you gain a self-confidence that never goes away.",
+    source: "Bob Schieffer",
+    year: "2006",
+    citation: "thoughtcatalog"
+  },
+  {
+    quote: "You miss 100% of the shots you don\'t take.",
+    source: "Wayne Gretzky",
+    citation: "forbes"
+  },
+  {
+    quote: "Our greatest glory is not in never falling, but in rising every time we fall.",
+    source: "Confucius",
+    citation: "inc"
+  }
+];
 
+function getRandomQuote() {
+  // generate a random number
+  var randomNum = Math.floor(Math.random() * quotes.length);
+  // return a random quote object from 'quotes' array
+  var quote = quotes[randomNum];
+  return quote;
+}
 
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
+function printQuote() {
+  // call the 'getRandomQuite' function
+  var randomQuote = getRandomQuote();
+  var quoteInfo = "";
 
-  Recommended: 
-    - Add at least one `year` and/or `citation` property to at least one 
-      quote object.
-***/
+  //build HTML string that holds information about randomly picked quote
+  quoteInfo += "<p class='quote'>" + randomQuote.quote + "</p>";
+  quoteInfo += "<p class='source'>" + randomQuote.source; // <---- finish it off
 
+  // check if optional citation property exist
+  if(randomQuote.citation){
+    quoteInfo += "<span class='citation'>" + randomQuote.citation + "</span>";
+  }
 
+  // check if optional year property exist
+  if(randomQuote.year){
+   quoteInfo += "<span class='year'>" + randomQuote.year + "</span>";
+  }
 
+  quoteInfo += "</p>";
 
-/***
-  Create the `getRandomQuote` function to:
-   - generate a random number 
-   - use the random number to `return` a random quote object from the 
-     `quotes` array.
-***/
+  // set the innerHTML of the quote-box to the quoteInfo string
+  var div = document.getElementById('quote-box');
+  div.innerHTML = quoteInfo;
 
+}
 
-
-
-/***
-  Create the `printQuote` function to: 
-   - call the `getRandomQuote` function and assign it to a variable.
-   - use the properties of the quote object stored in the variable to 
-     create your HTML string.
-   - use conditionals to make sure the optional properties exist before 
-     they are added to the HTML string.
-   - set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
-
-
-
-
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
-***/
-
+// trigger the event listener to show another quote when the button 'Show another quote' is clicked
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
