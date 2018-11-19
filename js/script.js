@@ -76,7 +76,27 @@ function printQuote() {
   var div = document.getElementById('quote-box');
   div.innerHTML = quoteInfo;
 
+  // target the body tag inside index.html
+  var body = document.getElementById('body');
+  // change the background of the body by applying style attribute
+  // with randomly generated background color
+  body.setAttribute('style', 'background-color: ' + randomColor() + '');
 }
+
+// generate a random number between 0 - 256
+function randomRGB(){
+  return Math.floor(Math.random() * 256);
+}
+
+// build a random color using string
+function randomColor() {
+  var color = 'rgb(';
+  color += randomRGB() + ',';
+  color += randomRGB() + ',';
+  color += randomRGB() + ')';
+  return color;
+}
+
 
 // trigger the event listener to show another quote when the button 'Show another quote' is clicked
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
